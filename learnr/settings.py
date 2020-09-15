@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "marketing",
+    "accounts",
 ]
 
 MIDDLEWARE = [
