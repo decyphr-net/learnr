@@ -1,7 +1,23 @@
 {% extends 'base.html' %}{%block content%}
 
-<div class="grid grid-cols-1 pl-24 mt-40">
-  <h1>{{unit.title}}</h1>
-  {% autoescape off %}{{unit.description | linebreaks }}{% endautoescape %}
+<div class="grid grid-cols-1 pl-64 mt-40">
+  <div class="content-wrapper bg-white w-4/5 p-6 rounded-lg">
+    <h1 class="font-extrabold font-mono text-2xl">{{unit.display_title}}</h1>
+    <div class="mt-6">
+      {% autoescape off %}{{unit.description | linebreaks }}{% endautoescape %}
+    </div>
+  </div>
 </div>
-{% endblock%}
+<div class="text-center pt-6">
+  <a class="pr-2" href="#">Previous</a>
+  <a class="pl-2" href="#">Next</a>
+</div>
+{%endblock%} {% block extra_js %}
+<script>
+  tippy("p", {
+    content: document.getElementById("one").innerHTML,
+    allowHTML: true,
+    trigger: "click",
+  });
+</script>
+{% endblock %}
