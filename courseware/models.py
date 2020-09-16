@@ -29,21 +29,17 @@ class BaseInformation(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.title
+
 
 class Module(BaseInformation):
-    def __str__(self):
-        return self.name
+    pass
 
 
 class Lesson(BaseInformation):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
-
 
 class Unit(BaseInformation):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
