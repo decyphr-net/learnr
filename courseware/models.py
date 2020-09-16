@@ -22,7 +22,7 @@ class BaseInformation(models.Model):
     models
     """
 
-    name = models.CharField(max_length=120, null=False, blank=False)
+    title = models.CharField(max_length=120, null=False, blank=False)
     display_title = models.CharField(max_length=120, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
 
