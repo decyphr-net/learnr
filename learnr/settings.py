@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "theme",
     "marketing",
     "accounts",
+    "courseware",
 ]
 
 MIDDLEWARE = [
