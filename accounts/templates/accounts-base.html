@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
 
-  <body class="bg-green-100 font-serif leading-normal tracking-normal">
-    <div class="w-screen flex">{% block content %} {% endblock %}</div>
+  <body class="bg-gray-100 font-serif leading-normal tracking-normal">
+    <div class="flex w-screen items-center justify-center h-screen">
+      {% block content %} {% endblock %}
+    </div>
   </body>
 </html>
