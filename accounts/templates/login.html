@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'accounts-base.html' %} {% block content %}
 <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center m-auto">
   <div class="flex shadow w-5/12">
     <div
-      class="h-48 flex-1 lg:h-auto lg:w-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-teal-400"
+      class="h-48 lg:h-auto lg:w-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-teal-400"
     >
       <h1 class="text-white font-mono font-extrabold items-center">Learnr</h1>
     </div>
@@ -22,7 +22,8 @@
           </svg>
           Login to continue
         </p>
-        <form>
+        <form method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
           <div class="mb-4">
             <label
               class="block text-gray-700 text-sm font-bold mb-2"
@@ -35,6 +36,7 @@
               id="username"
               type="text"
               placeholder="Username"
+              name="username"
             />
           </div>
           <div class="mb-6">
@@ -49,13 +51,14 @@
               id="password"
               type="password"
               placeholder="******************"
+              name="password"
             />
             <p class="text-red-500 text-xs italic">Please choose a password.</p>
           </div>
           <div class="flex items-center justify-between">
             <button
               class="btn hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-              type="button"
+              type="submit"
             >
               Sign In
             </button>
