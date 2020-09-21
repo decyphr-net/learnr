@@ -26,7 +26,7 @@ def login(request):
     if request.user.is_authenticated:
         return redirect(reverse("course"))
     if request.method == "POST":
-        authenticate_and_redirect(
+        authenticate_user(
             request.POST.get("username"), request.POST.get("password"), request=request
         )
         return redirect(reverse("course"))
@@ -54,7 +54,7 @@ def register(request):
             password=password,
         )
         user.save()
-        authenticate(username=user.email, password=user.password, request=request)
+        authenticate_user(username=user.email, password=user.password, request=request)
         return redirect(reverse("course"))
     else:
         return render(request, "register.html")
