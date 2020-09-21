@@ -1,27 +1,26 @@
 {% extends 'accounts-base.html' %} {% block content %}
-<div class="max-w-sm w-full lg:max-w-full lg:flex justify-center m-auto">
-  <div class="flex shadow w-5/12">
+<div class="account-panel-wrapper lg:max-w-full lg:flex">
+  <div class="account-panel lg:w-2/5">
     <div
-      class="h-48 lg:h-auto lg:w-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-teal-400"
+      class="account-panel-left md:h-64 lg:w-56 lg:rounded-t-none lg:rounded-l"
     >
-      <h1 class="text-white font-mono font-extrabold items-center">Learnr</h1>
+      <p class="account-panel-left-icon">
+        <svg
+          class="fill-current text-white w-3 h-3 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"
+          />
+        </svg>
+      </p>
+      <h1 class="account-panel-left-title">Learnr</h1>
     </div>
     <div
-      class="border-r flex-1 border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
+      class="account-panel-right lg:border-l-0 lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r md:w-64"
     >
-      <div class="mb-8">
-        <p class="text-sm text-gray-600 flex items-center">
-          <svg
-            class="fill-current text-gray-500 w-3 h-3 mr-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"
-            />
-          </svg>
-          Login to continue
-        </p>
+      <div class="my-4">
         <form method="POST" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="mb-4">
@@ -53,7 +52,6 @@
               placeholder="******************"
               name="password"
             />
-            <p class="text-red-500 text-xs italic">Please choose a password.</p>
           </div>
           <div class="flex items-center justify-between">
             <button

@@ -10373,6 +10373,10 @@ video {
   height: 16rem;
 }
 
+.h-70 {
+  height: 21.625rem;
+}
+
 .h-auto {
   height: auto;
 }
@@ -21267,6 +21271,79 @@ video {
   line-height: 1.25;
 }
 
+.account-panel-wrapper {
+  max-width: 24rem;
+  width: 100%;
+  justify-content: center;
+  margin: auto;
+}
+
+.account-panel {
+  display: flex;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  justify-content: center;
+  align-items: center;
+}
+
+.account-panel-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  height: 16rem;
+  width: 8rem;
+  flex: none;
+  background-size: cover;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  text-align: center;
+  overflow: hidden;
+  --bg-opacity: 1;
+  background-color: #4fd1c5;
+  background-color: rgba(79, 209, 197, var(--bg-opacity));
+}
+
+.account-panel-left-icon {
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  display: flex;
+  align-items: center;
+}
+
+.account-panel-left-title {
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  display: block;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 800;
+  align-items: center;
+}
+
+.account-panel-right {
+  border-right-width: 1px;
+  flex: 1 1 0%;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  --border-opacity: 1;
+  border-color: #cbd5e0;
+  border-color: rgba(203, 213, 224, var(--border-opacity));
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.5;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -31053,6 +31130,10 @@ video {
 
   .sm\:h-64 {
     height: 16rem;
+  }
+
+  .sm\:h-70 {
+    height: 21.625rem;
   }
 
   .sm\:h-auto {
@@ -51639,6 +51720,10 @@ video {
     height: 16rem;
   }
 
+  .md\:h-70 {
+    height: 21.625rem;
+  }
+
   .md\:h-auto {
     height: auto;
   }
@@ -72223,6 +72308,10 @@ video {
     height: 16rem;
   }
 
+  .lg\:h-70 {
+    height: 21.625rem;
+  }
+
   .lg\:h-auto {
     height: auto;
   }
@@ -92805,6 +92894,10 @@ video {
 
   .xl\:h-64 {
     height: 16rem;
+  }
+
+  .xl\:h-70 {
+    height: 21.625rem;
   }
 
   .xl\:h-auto {
