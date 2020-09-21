@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import environ
 from pathlib import Path
+import dj_database_url
 
-env = environ.Env(DEBUG=(bool, False), SECRET_KEY=(str, ""))
+env = environ.Env(
+    DEBUG=(bool, False), SECRET_KEY=(str, ""), DATABASE_URI=(str, None), HOST=(str, "")
+)
 
 environ.Env.read_env()
 
@@ -29,7 +32,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env("HOST")]
 
 
 # Application definition
@@ -81,12 +84,18 @@ WSGI_APPLICATION = "learnr.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+DATABASES = {}
+
+if env("DATABASE_URI"):
+    DATABASES["default"] = dj_database_url.parse(env("DATABASE_URI"))
+else:
+    print("Connecting to SQLite")
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 
 # Password validation
