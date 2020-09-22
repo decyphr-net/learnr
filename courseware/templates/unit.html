@@ -1,4 +1,4 @@
-{% extends 'course-base.html' %}{%block content%}
+{% extends 'course-base.html' %}{% load static %}{%block content%}
 
 <div class="grid grid-cols-1 mt-40">
   <div class="content-wrapper bg-white w-4/5 p-6 rounded-lg m-auto">
@@ -16,8 +16,13 @@
 </div>
 {%endblock%} {% block extra_js %}
 <script>
-  tippy("p", {
-    content: document.getElementById("one").innerHTML,
+  tippy(".explanation", {
+    content(reference) {
+      const id = reference.getAttribute("data-template");
+      const template = document.getElementById(id);
+      console.log(template, id);
+      return template.innerHTML;
+    },
     allowHTML: true,
     trigger: "click",
   });

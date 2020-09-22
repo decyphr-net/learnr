@@ -21344,6 +21344,18 @@ video {
   line-height: 1.5;
 }
 
+.explanation {
+  --text-opacity: 1;
+  color: #4fd1c5;
+  color: rgba(79, 209, 197, var(--text-opacity));
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.tippy-content {
+  padding: 0 !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

@@ -33,3 +33,11 @@
 .account-panel-right {
   @apply border-r flex-1 border-b border-l border-gray-400 bg-white rounded-b px-3 pb-2 flex flex-col justify-between leading-normal;
 }
+
+.explanation {
+  @apply text-teal-400 underline font-bold;
+}
+
+.tippy-content {
+  padding: 0 !important;
+}
