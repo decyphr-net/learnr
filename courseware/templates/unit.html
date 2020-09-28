@@ -20,7 +20,6 @@
     content(reference) {
       const id = reference.getAttribute("data-template");
       const template = document.getElementById(id);
-      console.log(template, id);
       return template.innerHTML;
     },
     allowHTML: true,
