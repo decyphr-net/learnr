@@ -3,22 +3,26 @@ from .models import Module, Lesson, Unit
 
 # Create your views here.
 def modules(request):
-    return render(request, "course-layout.html", {"modules": Module.objects.all()})
+    return render(
+        request,
+        "course-layout.html",
+        {"structure": Module.objects.all(), "type": "course"},
+    )
 
 
 def lessons(request, module_id):
     return render(
         request,
-        "lessons.html",
-        {"lessons": Lesson.objects.filter(module__id=module_id)},
+        "course-layout.html",
+        {"structure": Lesson.objects.filter(module__id=module_id), "type": "module"},
     )
 
 
 def units(request, lesson_id):
     return render(
         request,
-        "units.html",
-        {"units": Unit.objects.filter(lesson_id=lesson_id)},
+        "course-layout.html",
+        {"structure": Unit.objects.filter(lesson_id=lesson_id), "type": "lesson"},
     )
 
 
