@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>{{ token }}</p>
+    <form>
+      <label for="username">Name: </label>
+      <button id="join-leave">Join call</button>
+      <button id="share-screen" disabled>Share screen</button>
+    </form>
+    <div id="container" class="container">
+      <div id="local" class="participant">
+        <div></div>
+        <div class="label">Me</div>
+      </div>
+      <!-- more participants will be added dynamically here -->
+    </div>
+    <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+    <script src="{% static 'js/chat.js' %}"></script>
+  </body>
+</html>

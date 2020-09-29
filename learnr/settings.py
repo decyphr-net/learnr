@@ -15,7 +15,13 @@ from pathlib import Path
 import dj_database_url
 
 env = environ.Env(
-    DEBUG=(bool, False), SECRET_KEY=(str, ""), DATABASE_URI=(str, None), HOST=(str, "")
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, ""),
+    DATABASE_URI=(str, None),
+    HOST=(str, ""),
+    TWILIO_ACCOUNT_SID=(str, ""),
+    TWILIO_API_KEY_SID=(str, ""),
+    TWILIO_API_KEY_SECRET=(str, ""),
 )
 
 environ.Env.read_env()
@@ -32,7 +38,8 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = [env("HOST")]
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -45,9 +52,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tailwind",
+    "ckeditor",
     "marketing",
     "accounts",
     "courseware",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -136,3 +145,14 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = "/static/"
+STATICFILES_DIRS = ()
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
+
+# this is where manage.py collectstatic will copy *all* static media to
+STATIC_ROOT = "/path/to/your/production/static/direcotry"
+STATIC_URL = "/static/"
+
+TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID")
+TWILIO_API_KEY_SID = env("TWILIO_API_KEY_SID")
+TWILIO_API_KEY_SECRET = env("TWILIO_API_KEY_SECRET")
