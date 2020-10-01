@@ -4,4 +4,3 @@ learnr/.env
 .vscode/
 db.sqlite3
 node_modules
-static
