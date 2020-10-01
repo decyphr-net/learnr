@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
-    <p>{{ token }}</p>
-    <form>
-      <label for="username">Name: </label>
-      <button id="join-leave">Join call</button>
-      <button id="share-screen" disabled>Share screen</button>
-    </form>
-    <div id="container" class="container">
+    <p class="hidden" id="token">{{ token }}</p>
+    <p class="hidden" id="username">{{ user.username }}</p>
+    <button id="join-leave">Join call</button>
+    <button id="share-screen" disabled>Share screen</button>
+    <p id="count">Disconnected.</p>
+    <div id="call-container" class="container">
       <div id="local" class="participant">
         <div></div>
         <div class="label">Me</div>

@@ -15,5 +15,5 @@ def chat(request):
         settings.TWILIO_API_KEY_SECRET,
         identity=username,
     )
-    token.add_grant(VideoGrant(room="My Room"))
+    token.add_grant(VideoGrant(room="Chat Room"))
     return render(request, "chat.html", {"token": token.to_jwt().decode()})
