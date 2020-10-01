@@ -41,3 +41,7 @@
 .tippy-content {
   padding: 0 !important;
 }
+
+video {
+  @apply w-9/12 h-auto;
+}

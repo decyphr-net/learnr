@@ -58,9 +58,8 @@ const connect = (username) => {
 };
 
 const participantConnected = (participant) => {
-  let participantContainer = document.createElement("div");
+  let participantContainer = document.querySelector(".participant");
   participantContainer.setAttribute("id", participant.sid);
-  participantContainer.setAttribute("class", "participant");
 
   let tracksContainer = document.createElement("div");
   participantContainer.appendChild(tracksContainer);
@@ -69,8 +68,6 @@ const participantConnected = (participant) => {
   identityLabel.setAttribute("class", "label");
   identityLabel.innerHTML = participant.identity;
   participantContainer.appendChild(identityLabel);
-
-  callContainer.appendChild(participantContainer);
 
   participant.tracks.forEach((publication) => {
     if (publication.isSubscribed)

@@ -21356,6 +21356,11 @@ video {
   padding: 0 !important;
 }
 
+video {
+  width: 75%;
+  height: auto;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
