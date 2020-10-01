@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Module, Lesson, Unit
+from progress.models import Progress
 
 # Create your views here.
 def modules(request):
@@ -27,4 +28,10 @@ def units(request, lesson_id):
 
 
 def unit(request, unit_id):
+    if request.GET.get("current"):
+        print(int(request.GET.get("current")))
+        progress = Progress(
+            user=request.user, unit=Unit.objects.get(id=int(request.GET.get("current")))
+        )
+        progress.save()
     return render(request, "unit.html", {"unit": Unit.objects.get(id=unit_id)})

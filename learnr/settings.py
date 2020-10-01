@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "accounts",
     "courseware",
     "chat",
+    "progress",
 ]
 
 MIDDLEWARE = [
