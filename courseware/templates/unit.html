@@ -4,7 +4,13 @@
   <div class="content-wrapper bg-white w-4/5 p-6 rounded-lg m-auto">
     <h1 class="font-extrabold font-mono text-2xl">{{unit.display_title}}</h1>
     <div class="mt-6 text-lg font-mono">
-      {% autoescape off %}{{unit.description}}{% endautoescape %}
+      <!-- prettier-ignore-->
+      {% if unit.type == "challenge" %}
+      <form method="POST" action="/course/challenge/{{ unit.id }}">
+        {% csrf_token %} {{unit.description|safe}}
+      </form>
+      <!-- prettier-ignore -->
+      {% else %} {{unit.description|safe}} {% endif %}
     </div>
   </div>
 </div>

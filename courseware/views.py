@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Module, Lesson, Unit
 from progress.models import Progress
 
@@ -29,9 +29,25 @@ def units(request, lesson_id):
 
 def unit(request, unit_id):
     if request.GET.get("current"):
-        print(int(request.GET.get("current")))
         progress = Progress(
-            user=request.user, unit=Unit.objects.get(id=int(request.GET.get("current")))
+            user=request.user,
+            unit=Unit.objects.get(id=int(request.GET.get("current"))),
+            passed="na",
         )
         progress.save()
     return render(request, "unit.html", {"unit": Unit.objects.get(id=unit_id)})
+
+
+def challenge(request, unit_id):
+    """"""
+    challenge = Unit.objects.get(id=unit_id)
+    user_submission = request.POST.get("answer")
+    answer = request.POST.get("correct-answer")
+
+    if user_submission.lower() == answer.lower():
+        progress = Progress(user=request.user, unit=challenge, passed="y")
+    else:
+        progress = Progress(user=request.user, unit=challenge, passed="n")
+
+    progress.save()
+    return redirect(reverse("unit", kwargs={"unit_id": unit_id}))

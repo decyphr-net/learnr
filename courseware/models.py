@@ -11,6 +11,12 @@ English and there's no gaurentee that this will ever change
 from django.db import models
 
 
+UNIT_TYPES = [
+    ("text", "Text"),
+    ("challenge", "Challenge"),
+]
+
+
 class BaseInformation(models.Model):
     """
     Most of the information across most of these models will be the same.
@@ -43,3 +49,4 @@ class Lesson(BaseInformation):
 
 class Unit(BaseInformation):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    type = models.CharField(choices=UNIT_TYPES, max_length=12)
