@@ -174,6 +174,13 @@ const updateParticipantCount = () => {
   else count.innerHTML = room.participants.size + 1 + " participants online.";
 };
 
+const connectChat = () => {
+  Twilio.Chat.Client.create(document.querySelector("#token").innerHTML).then((client) => {
+    console.log(client);
+  });
+}
+
+connectChat()
 addLocalVideo();
 joinOrLeave.addEventListener("click", connectButtonHandler);
 shareScreenButton.addEventListener("click", shareScreenHandler);
