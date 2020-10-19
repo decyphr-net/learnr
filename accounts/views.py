@@ -12,6 +12,7 @@ def authenticate_user(username, password, request):
         username (str): The username the user wants to authenticate with
         password (str): The password the user wants to authenticate with
     """
+
     user = authenticate(username=username, password=password)
     auth_login(request, user)
 
@@ -54,7 +55,7 @@ def register(request):
             password=password,
         )
         user.save()
-        authenticate_user(username=user.email, password=user.password, request=request)
+        authenticate_user(username=user.email, password=password, request=request)
         return redirect(reverse("course"))
     else:
         return render(request, "register.html")
