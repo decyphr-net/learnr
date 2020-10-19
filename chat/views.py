@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import ChatGrant
+from twilio.jwt.access_token.grants import VideoGrant
 from .models import Room
 
 
@@ -17,9 +18,18 @@ def all_rooms(request):
 @login_required
 def room_detail(request, slug):
     """"""
-    print(slug)
+    username = request.user.username
+    token = AccessToken(
+        settings.TWILIO_ACCOUNT_SID,
+        settings.TWILIO_API_KEY_SID,
+        settings.TWILIO_API_KEY_SECRET,
+        identity=username,
+    )
+    token.add_grant(VideoGrant(room="Chat Room"))
     room = Room.objects.get(slug=slug)
-    return render(request, "room.html", {"room": room})
+    return render(
+        request, "room.html", {"room": room, "token": token.to_jwt().decode()}
+    )
 
 
 @login_required
