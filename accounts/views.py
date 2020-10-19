@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 
 
 def authenticate_user(username, password, request):
-    """Authenticate & Redirect
+    """Authenticate
 
     Authenticate the user based on the username and password provided.
 
@@ -41,6 +41,8 @@ def register(request):
     Returns the register.html file for GET requests and will process the
     registration form data, and create and authenticate the user for POST.
     """
+    if request.user.is_authenticated:
+        return redirect(reverse("course"))
     if request.method == "POST":
         first_name = request.POST.get("firstname")
         last_name = request.POST.get("lastname")
