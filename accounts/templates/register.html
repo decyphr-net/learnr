@@ -1,5 +1,43 @@
 {% extends 'accounts-base.html' %} {% block content %}
-<div class="account-panel-wrapper lg:max-w-full lg:flex">
+<div class="hero is-fullheight is-light is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <h3 class="title has-text-grey">Register</h3>
+          <div class="title has-text-grey is-5">Please enter your email and password.</div>
+
+          <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" name="firstname" type="text" placeholder="First Name" autofocus>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" name="lastname" type="text" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" name="email" type="email" placeholder="Email">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" name="password" type="password" placeholder="Password">
+              </div>
+            </div>
+            <button class="button is-block is-primary is-medium is-fullwidth">Login</button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="account-panel-wrapper lg:max-w-full lg:flex">
   <div class="account-panel lg:w-2/5">
     <div
       class="account-panel-left md:h-70 lg:w-56 lg:rounded-t-none lg:rounded-l"
@@ -100,6 +138,6 @@
         </form>
       </div>
     </div>
-  </div>
-</div>
+  </div> 
+</div>-->
 {% endblock %}
