@@ -34,7 +34,10 @@ def unit(request, unit_id):
             unit=Unit.objects.get(id=int(request.GET.get("current"))),
             passed="na",
         )
-        progress.save()
+        try:
+            progress.save()  #
+        except:
+            pass
     return render(request, "unit.html", {"unit": Unit.objects.get(id=unit_id)})
 
 
