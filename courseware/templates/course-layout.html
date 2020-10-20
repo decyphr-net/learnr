@@ -1,28 +1,32 @@
 {% extends 'course-base.html' %}{%block content%}
 
-<div class="grid grid-cols-1 lg:grid-cols-2">
+<div class="container">
+  <div class="columns is-multiline">
   {% for item in structure %}
-  <div class="md:flex shadow-lg m-auto mt-40 max-w-lg md:max-w-2xl w-full h-40">
-    <div class="w-full px-4 py-4 bg-white rounded-lg">
-      <div class="flex items-center">
-        <h2 class="text-xl text-gray-800 font-medium mr-auto">
-          {{item.display_title}}
-        </h2>
-      </div>
-      <p class="text-sm text-gray-700 mt-4">
-        <!-- prettier-ignore-->
-        {% if type == 'lesson'%}{{item.display_title|safe}}{%else%}{{item.description}}{% endif %}
-      </p>
-      <div class="flex items-center justify-end mt-4 top-auto">
-        <a
-          href="/course/{% if type == 'module'%}lesson/{{item.id}}{% elif type == 'lesson' %}unit/{{item.id}}{% else %}{{item.id}}{% endif %}"
-          class="bg-blue-600 text-gray-200 py-2 px-12 rounded-md"
-        >
-          Get Started!
-        </a>
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">{{ item.display_title }}</h2>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>{% if type == 'lesson'%}{{item.display_title|safe}}{%else%}{{item.description}}{% endif %}</p>
+          </div>
+        </div>
+        <footer class="card-footer level mb-0">
+          <span class="level-left m-0 p-0"></span>
+          <a
+            href="/course/{% if type == 'module'%}lesson/{{item.id}}{% elif type == 'lesson' %}unit/{{item.id}}{% else %}{{item.id}}{% endif %}"
+            class="button is-link level-right m-3">Vamos!</a>
+        </footer>
       </div>
     </div>
-  </div>
   {% endfor %}
+</div>
 </div>
 {% endblock%}

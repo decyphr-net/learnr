@@ -12,78 +12,69 @@
 
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" />
   </head>
 
-  <body class="bg-gray-200 leading-normal tracking-normal font-mono">
-    <nav
-      class="flex items-center justify-between flex-wrap bg-teal-400 p-6 fixed w-full z-10 top-0"
-    >
-      <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <a
-          class="text-white no-underline hover:text-white hover:no-underline"
-          href="#"
-        >
-          <p class="text-2xl pl-2">Learnr</p>
+  <body>
+    <nav class="navbar is-transparent">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
         </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-
-      <div class="block lg:hidden">
-        <button
-          id="nav-toggle"
-          class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white"
-        >
-          <svg
-            class="fill-current h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
-      </div>
-
-      <div
-        class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"
-        id="nav-content"
-      >
-        <ul class="list-reset lg:flex justify-end flex-1 items-center">
-          <li class="mr-3">
-            <a class="inline-block py-2 px-4 text-white no-underline" href="#"
-              >Active</a
-            >
-          </li>
-          <li class="mr-3">
-            <a
-              class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-              href="#"
-              >link</a
-            >
-          </li>
-          <li class="mr-3">
-            <a
-              class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-              href="#"
-              >link</a
-            >
-          </li>
-          <li class="mr-3">
-            <a
-              class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-              href="#"
-              >link</a
-            >
-          </li>
-        </ul>
+    
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="https://bulma.io/">
+            Home
+          </a>
+          <a class="navbar-item" href="">
+            Curso
+          </a>
+          <a class="navbar-item" href="">
+            Chat
+          </a>
+        </div>
+    
+        <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+              Account
+            </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+                Profile
+              </a>
+              <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
-    <div class="w-full">{% block content %} {% endblock %}</div>
+    <div class="hero is-fullheight is-light is-bold">
+      <div class="hero-body">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Learnr was built by <a href="https://github.com/aaronsnig501">Aaron Sinnott</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("nav-toggle").onclick = function () {
+        document.getElementById("nav-content").classList.toggle("hidden");
+      };
+    </script>
+    {% block extra_js %} {% endblock %}
   </body>
-  <script>
-    document.getElementById("nav-toggle").onclick = function () {
-      document.getElementById("nav-content").classList.toggle("hidden");
-    };
-  </script>
-  {% block extra_js %} {% endblock %}
 </html>
