@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"
   </head>
 
   <body class=" has-background-light">
@@ -55,8 +56,8 @@
         </div>
       </div>
     </nav>
-    <div class="container is-fullhd">
-      <div class="columns pt-6">
+    <div class="container is-fullhd unit-container">
+      <div class="columns pt-6 is-fullhd is-block">
         {% block content %} {% endblock %}
       </div>
     </div>
