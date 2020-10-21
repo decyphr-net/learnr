@@ -30,28 +30,25 @@
     
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io/">
-            Home
-          </a>
-          <a class="navbar-item" href="">
+          <a class="navbar-item" href="{% url 'course' %}">
             Curso
           </a>
-          <a class="navbar-item" href="">
-            Chat
+          <a class="navbar-item" href="{% url 'all_rooms' %}">
+            Bate-Papo
           </a>
         </div>
     
         <div class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-              Account
+            <a class="navbar-link">
+              Conta
             </a>
             <div class="navbar-dropdown is-boxed">
               <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-                Profile
+                Perfil
               </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-                Logout
+              <a class="navbar-item" href="{% url 'logout' %}">
+                Sair
               </a>
             </div>
           </div>
