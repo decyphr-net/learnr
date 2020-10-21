@@ -15,7 +15,6 @@ class Progress(models.Model):
     passed = models.CharField(choices=PASSED, max_length=3)
 
     def validate_unique(self, *args, **kwargs):
-        print("hello?")
         super(Progress, self).validate_unique(*args, **kwargs)
         query = Progress.objects.filter(user=self.user, unit=self.unit)
         if query.exists():
