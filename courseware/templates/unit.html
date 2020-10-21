@@ -5,12 +5,21 @@
       Unidades
     </p>
     {% for lesson_unit in lesson_units %}
-    <a class="panel-block is-active" href="/course/unit/{{ lesson_unit.id }}">
-      <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
-      </span>
-      {{ lesson_unit.title }}
-    </a>
+      {% if lesson_unit.title in completed_units %}
+        <a class="panel-block is-active has-text-success" href="/course/unit/{{ lesson_unit.id }}">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          {{ lesson_unit.title }}
+        </a>
+      {% else %}
+        <a class="panel-block is-active" href="/course/unit/{{ lesson_unit.id }}">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          {{ lesson_unit.title }}
+        </a>
+      {% endif %}
     {% endfor %}
   </div>
     

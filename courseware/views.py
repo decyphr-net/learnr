@@ -30,6 +30,10 @@ def units(request, lesson_id):
 def unit(request, unit_id):
     current_unit = Unit.objects.get(id=unit_id)
     lesson_units = Unit.objects.filter(lesson__id=current_unit.lesson.id)
+    completed_unit_titles = request.user.progress_set.all().values_list(
+        "unit__title", flat=True
+    )
+    print(request.user.progress_set.all())
 
     if request.GET.get("current"):
         progress = Progress(
@@ -42,7 +46,13 @@ def unit(request, unit_id):
         except:
             pass
     return render(
-        request, "unit.html", {"unit": current_unit, "lesson_units": lesson_units}
+        request,
+        "unit.html",
+        {
+            "unit": current_unit,
+            "lesson_units": lesson_units,
+            "completed_units": completed_unit_titles,
+        },
     )
 
 
