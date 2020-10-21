@@ -1,9 +1,24 @@
 {% extends 'course-base.html' %}{% load static %}{%block content%}
-
-<div class="grid grid-cols-1 mt-40">
-  <div class="content-wrapper bg-white w-4/5 p-6 rounded-lg m-auto">
-    <h1 class="font-extrabold font-mono text-2xl">{{unit.display_title}}</h1>
-    <div class="mt-6 text-lg font-mono">
+<div class="panel columns mt-6">
+  <div class="column is-3 has-background-white">
+    <p class="panel-heading has-background-info has-text-white">
+      Units
+    </p>
+    {% for lesson_unit in lesson_units %}
+    <a class="panel-block is-active" href="/course/unit/{{ lesson_unit.id }}">
+      <span class="panel-icon">
+        <i class="fas fa-book" aria-hidden="true"></i>
+      </span>
+      {{ lesson_unit.title }}
+    </a>
+    {% endfor %}
+  </div>
+    
+  <div class="column is-9 has-background-white">
+    <p class="panel-heading has-background-info has-text-white">
+      {{ unit.display_title }}
+    </p>
+    <div class="content-display px-4">
       <!-- prettier-ignore-->
       {% if unit.type == "challenge" %}
       <form method="POST" action="/course/challenge/{{ unit.id }}">
@@ -14,17 +29,9 @@
     </div>
   </div>
 </div>
-<div class="text-center pt-6">
-  {% if not unit.id == 1 %}
-  <a class="pr-2" href="/course/unit/{{ unit.id|add:'-1' }}?current={{unit.id}}"
-    >Previous</a
-  >
-  {% endif %}
-  <a class="pl-2" href="/course/unit/{{ unit.id|add:'1'}}?current={{unit.id}}"
-    >Next</a
-  >
-</div>
-{%endblock%} {% block extra_js %}
+
+{%endblock%}
+{% block extra_js %}
 <script>
   tippy(".explanation", {
     content(reference) {

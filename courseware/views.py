@@ -28,6 +28,9 @@ def units(request, lesson_id):
 
 
 def unit(request, unit_id):
+    current_unit = Unit.objects.get(id=unit_id)
+    lesson_units = Unit.objects.filter(lesson__id=current_unit.lesson.id)
+
     if request.GET.get("current"):
         progress = Progress(
             user=request.user,
@@ -38,7 +41,9 @@ def unit(request, unit_id):
             progress.save()  #
         except:
             pass
-    return render(request, "unit.html", {"unit": Unit.objects.get(id=unit_id)})
+    return render(
+        request, "unit.html", {"unit": current_unit, "lesson_units": lesson_units}
+    )
 
 
 def challenge(request, unit_id):
