@@ -12,7 +12,7 @@ class Progress(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    passed = models.CharField(choices=PASSED, max_length=3)
+    passed = models.CharField(choices=PASSED, max_length=3, default="na")
 
     def validate_unique(self, *args, **kwargs):
         super(Progress, self).validate_unique(*args, **kwargs)
