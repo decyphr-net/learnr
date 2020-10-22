@@ -19,7 +19,7 @@ class Progress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
     passed = models.CharField(
-        choices=StatusChoice.choices, max_length=20, default=StatusChoice.NOT_APPLICABLE
+        choices=StatusChoice.choices, max_length=20, null=True, blank=True
     )
 
     def validate_unique(self, *args, **kwargs):
