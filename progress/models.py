@@ -8,11 +8,19 @@ from courseware.models import Unit
 PASSED = [("y", "Yes"), ("n", "No"), ("na", "N/A")]
 
 
+class StatusChoice(models.TextChoices):
+    YES = "Y", "Yes"
+    No = "N", "No"
+    NOT_APPLICABLE = "NA", "NOT APPLICABLE"
+
+
 class Progress(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    passed = models.CharField(choices=PASSED, max_length=3, default=PASSED[2][0])
+    passed = models.CharField(
+        choices=StatusChoice.choices, max_length=20, default=StatusChoice.NOT_APPLICABLE
+    )
 
     def validate_unique(self, *args, **kwargs):
         super(Progress, self).validate_unique(*args, **kwargs)
