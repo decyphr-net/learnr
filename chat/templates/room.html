@@ -1,59 +1,45 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>{{room.name}} | Twilio Chat</title>
-  <link rel="stylesheet" href="{% static "css/styles.css" %}">
-</head>
-
-<body>
-  <div class="container">
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <section>
-          <p class="hidden" id="token">{{ token }}</p>
-          <p class="hidden" id="username">{{ user.username }}</p>
-          <button id="join-leave">Join call</button>
-          <button id="share-screen" disabled>Share screen</button>
-          <p id="count">Disconnected.</p>
-          <div class="participant w-full"></div>
-          <div id="call-container" class="w-64">
-            <div id="local" class="participant">
-              <div></div>
-              <div class="label">Me</div>
-            </div>
-            <!-- more participants will be added dynamically here -->
-          </div>
-        </section>
-      </div>
-
-      <div class="column sidebar">
-        <div class="float-right">
-          <h2 class="title">{{room.name}}</h2>
-          <div id="messages"></div>
-          <form id="message-form">
-            <div class="field">
-              <label class="label">Message</label>
-              <div class="control">
-                <textarea class="textarea" id="message-input" placeholder="Your message here" rows="3" autofocus></textarea>
-              </div>
-            </div>
-            <button id="chat-submit" type="submit" class="button">Send</button>
-          </form>
+{% extends 'course-base.html' %}{% load static %}{% block content %}
+<div class="columns">
+  <div class="column is-offset-1 is-6">
+    <section>
+      <p class="is-hidden" id="token">{{ token }}</p>
+      <p class="is-hidden" id="username">{{ user.username }}</p>
+      <button id="join-leave">Join call</button>
+      <button id="share-screen" disabled>Share screen</button>
+      <p id="count">Disconnected.</p>
+      <div class="participant w-full"></div>
+      <div id="call-container" class="w-64">
+        <div id="local" class="participant">
+          <div></div>
+          <div class="label">Me</div>
         </div>
+        <!-- more participants will be added dynamically here -->
       </div>
-
-    </div>
+    </section>
   </div>
 
+  <div class="column is-4 sidebar">
+    <div class="float-right">
+      <h2 class="title">{{room.name}}</h2>
+      <div id="messages"></div>
+      <form id="message-form">
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" id="message-input" placeholder="Sua mensagem aqui" rows="3" autofocus></textarea>
+          </div>
+        </div>
+        <button id="chat-submit" type="submit" class="button">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
   <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
   <script src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
   <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
   <script src="{% static "js/chat.js" %}"></script>
   <script src="{% static "js/rooms.js" %}"></script>
-</body>
-
-</html>
+{% endblock %}

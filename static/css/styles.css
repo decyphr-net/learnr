@@ -6,3 +6,17 @@
 .panel {
   box-shadow: initial;
 }
+
+#message-form {
+  position: absolute;
+  bottom: 0;
+  width: 25%;
+}
+
+.participant video {
+  width: 100%;
+}
+
+#local video {
+  width: 10%;
+}

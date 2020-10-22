@@ -33,7 +33,6 @@ def unit(request, unit_id):
     completed_unit_titles = request.user.progress_set.all().values_list(
         "unit__title", flat=True
     )
-    print(request.user.progress_set.all())
 
     if request.GET.get("current"):
         progress = Progress(
