@@ -7,6 +7,10 @@
   box-shadow: initial;
 }
 
+.subtitle {
+  width: 60%;
+}
+
 .content-display p {
   margin: 1rem 0;
 }
