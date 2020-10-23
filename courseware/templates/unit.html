@@ -44,7 +44,7 @@
 </div>
 <div class="is-12 is-block">
   <nav class="pagination is-center is-block" role="navigation" aria-label="pagination">
-    <a class="pagination-previous" href="/course/unit/{{ unit.id|add:'-1'}}>Previous</a>
+    <a class="pagination-previous" href="/course/unit/{{ unit.id|add:'-1'}}?current={{unit.id|add:'-1'}}">Previous</a>
     <a class="pagination-next" href="/course/unit/{{ unit.id|add:'1'}}?current={{unit.id}}">Next page</a>
   </nav>
 </div>
