@@ -33,6 +33,16 @@
     <div class="content-display p-2">
       <!-- prettier-ignore-->
       {% if unit.type == "challenge" %}
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <div class="notification is-{{ message.tags }} is-light">
+                <button class="delete"></button>
+                {{ message }}
+              </div>
+            {% endfor %}
+          </ul>
+        {% endif %}
       <form method="POST" action="/course/challenge/{{ unit.id }}">
         {% csrf_token %} {{unit.description|safe}}
       </form>
