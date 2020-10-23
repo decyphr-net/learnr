@@ -7,6 +7,40 @@
   box-shadow: initial;
 }
 
+.content-display p {
+  margin: 1rem 0;
+}
+
+.explanation {
+  color: hsl(171, 100%, 29%);
+}
+
+.explanation:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.content-display li {
+  margin: 0.5rem 0;
+}
+
+.content-display li i {
+  margin-right: 0.5rem;
+}
+
+.content-display input {
+  width: 80%;
+}
+
+.content-display table {
+  width: 75%;
+  margin: auto;
+}
+
+.content-display table td {
+  padding: 0.5% 1.75%;
+}
+
 #message-form {
   position: absolute;
   bottom: 0;

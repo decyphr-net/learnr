@@ -1,16 +1,18 @@
 {% extends 'course-base.html' %}{% load static %}{%block content%}
 <div class="panel columns">
-  <div class="column is-2 is-offset-1 has-background-white">
+  <div class="column is-2 is-offset-2 has-background-white">
     <p class="panel-heading has-background-info has-text-white">
       Unidades
     </p>
+    <div class="pt-4">
     {% for lesson_unit in lesson_units %}
       {% if lesson_unit.title in completed_units %}
-        <a class="panel-block is-active has-text-success" href="/course/unit/{{ lesson_unit.id }}">
+        <a class="panel-block" href="/course/unit/{{ lesson_unit.id }}">
           <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
+            <i class="fas fa-check-circle has-text-success" aria-hidden="true"></i>
           </span>
           {{ lesson_unit.title }}
+
         </a>
       {% else %}
         <a class="panel-block is-active" href="/course/unit/{{ lesson_unit.id }}">
@@ -22,12 +24,13 @@
       {% endif %}
     {% endfor %}
   </div>
+  </div>
     
-  <div class="column is-8 has-background-white">
+  <div class="column is-6 has-background-white">
     <p class="panel-heading has-background-info has-text-white">
       {{ unit.display_title }}
     </p>
-    <div class="content-display px-4">
+    <div class="content-display p-2">
       <!-- prettier-ignore-->
       {% if unit.type == "challenge" %}
       <form method="POST" action="/course/challenge/{{ unit.id }}">
