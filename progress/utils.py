@@ -16,14 +16,14 @@ def create_progress_from_request(request):
     """
     unit = Unit.objects.get(id=int(request.GET.get("current")))
     passed = "na" if unit.type == "text" else "n"
-    progress = Progress.objects.create(
+    progress = Progress(
         user=request.user,
         unit=unit,
         passed=passed,
     )
     try:
         progress.save()
-    except ValidationError:
+    except:
         pass
 
 
@@ -31,10 +31,10 @@ def create_progress_for_challenge(request, unit, submission, answer):
     """"""
     if submission.lower() == answer.lower():
         progress = Progress(user=request.user, unit=unit, passed="y")
-        messages.success(request, "Correct!")
+        messages.success(request, "Correto!")
     else:
         progress = Progress(user=request.user, unit=unit, passed="n")
-        messages.warning(request, "Incorrect, sorry! Try again.")
+        messages.warning(request, "Incorreto, desculpe! Tente novamente.")
     try:
         progress.save()
     except ValidationError:
