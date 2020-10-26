@@ -49,3 +49,19 @@
 #local video {
   width: 10%;
 }
+
+@media (max-width: 600px) {
+  video {
+    display: none;
+  }
+
+  .sidebar {
+    height: 65vh;
+  }
+
+  #message-form {
+    margin-top: 50%;
+    width: 95%;
+    margin-left: 2.5%;
+  }
+}
