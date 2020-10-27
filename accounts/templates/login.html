@@ -6,7 +6,7 @@
     <div class="container has-text-centered">
       <div class="column is-4 is-offset-4">
         <div class="box">
-          <h3 class="title has-text-grey">Login</h3>
+          <h3 class="title has-text-grey">Conecte-se</h3>
 
           <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
@@ -17,17 +17,13 @@
             </div>
             <div class="field">
               <div class="control">
-                <input class="input is-medium" name="password" type="password" placeholder="Password">
+                <input class="input is-medium" name="password" type="password" placeholder="Senha">
               </div>
             </div>
-            <label class="checkbox m-3">
-              <input type="checkbox">
-                Remember me
-            </label>
             <div class="is-block mb-4">
-              <a class="has-text-link" href="{% url 'register' %}">Don't have an account?</a>
+              <a class="has-text-link" href="{% url 'register' %}">Não tem conta?</a>
             </div>
-            <button class="button is-medium is-block is-primary is-fullwidth">Login</button>
+            <button class="button is-medium is-block is-primary is-fullwidth">Conecte-se</button>
           </form>
         </div>
         
