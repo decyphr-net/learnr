@@ -31,6 +31,26 @@
                 <input class="input is-medium" name="password" type="password" placeholder="Senha">
               </div>
             </div>
+            <div class="field">
+              <div class="control select is-fullwidth mb-2">
+                <select required name="first-lang" class="input is-medium">
+                  <option value="" selected disabled hidden>Que língua você fala?</option>
+                  {% for language in languages %}
+                    <option value="{{ language.short_code }}">{{ language.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control select is-fullwidth">
+                <select required name="new-lang" class="input is-medium">
+                  <option value="" selected disabled hidden>Que língua você está aprendendo?</option>
+                  {% for language in languages %}
+                    <option value="{{ language.short_code }}">{{ language.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
             <div class="is-block mb-4 mt-5">
               <a class="has-text-link" href="{% url 'login' %}">Já tem conta?</a>
             </div>

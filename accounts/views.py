@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from language.models import Language
 
 
 def authenticate_user(username, password, request):
@@ -48,6 +49,8 @@ def register(request):
         last_name = request.POST.get("lastname")
         email = request.POST.get("email")
         password = request.POST.get("password")
+        first_language = Language.objects.get(short_code=request.POST.get("first-lang"))
+        new_language = Language.objects.get(short_code=request.POST.get("new-lang"))
 
         user = User.objects.create_user(
             first_name=first_name,
@@ -56,11 +59,16 @@ def register(request):
             email=email,
             password=password,
         )
+
+        user.profile.first_language = first_language
+        user.profile.new_language = new_language
+
         user.save()
         authenticate_user(username=user.email, password=password, request=request)
         return redirect(reverse("course"))
     else:
-        return render(request, "register.html")
+        languages = Language.objects.all()
+        return render(request, "register.html", {"languages": languages})
 
 
 def logout(request):
