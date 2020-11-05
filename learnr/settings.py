@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "courseware",
     "chat",
     "progress",
+    "language",
 ]
 
 MIDDLEWARE = [
