@@ -11,6 +11,9 @@ class Classroom(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
     slug = models.CharField(max_length=50)
+    host = models.ForeignKey(User, related_name="host", on_delete=models.CASCADE)
+    student = models.ForeignKey(User, related_name="student", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """Room name"""
@@ -20,7 +23,7 @@ class Classroom(models.Model):
 class Conversation(models.Model):
     """Converation Model"""
 
-    sender = models.ForeignKey(User, on_delete=models.RESTRICT)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=100)
     room = models.ForeignKey(Classroom, on_delete=models.RESTRICT)

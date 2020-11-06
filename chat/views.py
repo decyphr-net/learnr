@@ -1,6 +1,8 @@
+from datetime import date
 from django.conf import settings
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import ChatGrant
@@ -24,7 +26,21 @@ def classroom(request, name):
         settings.TWILIO_API_KEY_SECRET,
         identity=username,
     )
-    token.add_grant(VideoGrant(room="Chat Room"))
+
+    host = User.objects.get(username=name)
+    student = request.user
+    classroom_name = f"{host} & {student} - {date.today()}"
+    token.add_grant(VideoGrant(room=classroom_name))
+
+    classroom = Classroom(
+        name=classroom_name,
+        description=classroom_name,
+        slug=f"{date.today}",
+        host=host,
+        student=student,
+    )
+
+    classroom.save()
     return render(request, "classroom.html", {"token": token.to_jwt().decode()})
 
 
