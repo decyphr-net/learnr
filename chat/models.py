@@ -2,10 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Room(models.Model):
-    """Chat Room
+class Classroom(models.Model):
+    """Classroom
 
-    The set of chat rooms that a user can access
+    The set of classrooms
     """
 
     name = models.CharField(max_length=30)
@@ -23,7 +23,7 @@ class Conversation(models.Model):
     sender = models.ForeignKey(User, on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=100)
-    room = models.ForeignKey(Room, on_delete=models.RESTRICT)
+    room = models.ForeignKey(Classroom, on_delete=models.RESTRICT)
 
     def __str__(self):
         return f"{self.sender} - {self.message}"

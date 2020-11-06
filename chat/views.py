@@ -5,18 +5,17 @@ from django.http import JsonResponse
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import ChatGrant
 from twilio.jwt.access_token.grants import VideoGrant
-from .models import Room
+from .models import Classroom
 
 
 @login_required
-def all_rooms(request):
+def teacher_selection(request):
     """"""
-    rooms = Room.objects.all()
-    return render(request, "rooms.html", {"rooms": rooms})
+    return render(request, "teacher-selection.html")
 
 
 @login_required
-def room_detail(request, slug):
+def classroom(request, name):
     """"""
     username = request.user.username
     token = AccessToken(
@@ -26,10 +25,7 @@ def room_detail(request, slug):
         identity=username,
     )
     token.add_grant(VideoGrant(room="Chat Room"))
-    room = Room.objects.get(slug=slug)
-    return render(
-        request, "room.html", {"room": room, "token": token.to_jwt().decode()}
-    )
+    return render(request, "classroom.html", {"token": token.to_jwt().decode()})
 
 
 @login_required

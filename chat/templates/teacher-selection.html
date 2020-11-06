@@ -4,20 +4,18 @@
 
 {% block content %}
 
-{% for room in rooms %}
 <div class="column is-offset-2 is-8">
   <div class="card rounded-edges">
     <div class="card-content">
-      <p class="title is-4">{{room.name}}</p>
+      <p class="title is-4">Aaron Sinnott</p>
       <div class="content">
         <p>
-          {{room.description}}
+          Comece sua aula com seu professor
         </p>
-        <a href="/chat/rooms/{{room.slug}}" class="button">Juntar-se à sala</a>
+        <a href="/chat/aaron" class="button">Juntar-se à sala</a>
       </div>
     </div>
   </div>
 </div>
-{% endfor %}
 
 {% endblock %}

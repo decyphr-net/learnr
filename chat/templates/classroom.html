@@ -1,11 +1,11 @@
 {% extends 'course-base.html' %}{% load static %}
 
-{% block title %}{{ room.name }} | Learnr{% endblock %}
+{% block title %}Classroom | Learnr{% endblock %}
 
 {% block content %}
 <div class="columns">
   <div class="column is-offset-1 is-6">
-    <h2 class="title">{{room.name}}</h2>
+    <h2 class="title">Classroom</h2>
     <section>
       <p class="is-hidden" id="token">{{ token }}</p>
       <p class="is-hidden" id="username">{{ user.username }}</p>
