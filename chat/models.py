@@ -26,7 +26,7 @@ class Conversation(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=100)
-    room = models.ForeignKey(Classroom, on_delete=models.RESTRICT)
+    room = models.ForeignKey(Classroom, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.sender} - {self.message}"
