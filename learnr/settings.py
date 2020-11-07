@@ -152,13 +152,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = "/static/"
-STATICFILES_DIRS = ()
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
-
-# this is where manage.py collectstatic will copy *all* static media to
-STATIC_ROOT = "/path/to/your/production/static/direcotry"
-STATIC_URL = "/static/"
 
 TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID")
 TWILIO_API_KEY_SID = env("TWILIO_API_KEY_SID")
