@@ -5,10 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from twilio.jwt.access_token import AccessToken
-from twilio.jwt.access_token.grants import ChatGrant
-from twilio.jwt.access_token.grants import VideoGrant
 from .models import Classroom, Conversation
+from .helpers.twilio import get_twilio_token
 
 
 @login_required
@@ -20,32 +18,24 @@ def teacher_selection(request):
 @login_required
 def classroom(request, name):
     """"""
-    username = request.user.username
-    token = AccessToken(
-        settings.TWILIO_ACCOUNT_SID,
-        settings.TWILIO_API_KEY_SID,
-        settings.TWILIO_API_KEY_SECRET,
-        identity=username,
-    )
-
     host = User.objects.get(username=name)
     student = request.user
-    classroom_name = f"{host} and {student} - {date.today()}"
-    token.add_grant(VideoGrant(room=classroom_name))
+    classroom_name = f"{host.username} and {student.username} - {date.today()}"
+    token = get_twilio_token(student.username, classroom_name)
 
-    classroom = Classroom(
+    classroom, created = Classroom.objects.get_or_create(
         name=classroom_name,
-        description=classroom_name,
-        slug=f"{date.today}",
-        host=host,
-        student=student,
+        defaults={
+            "description": classroom_name,
+            "slug": f"{date.today}",
+            "host": host,
+            "student": student,
+        },
     )
-
-    classroom.save()
     return render(
         request,
         "classroom.html",
-        {"classroom": classroom, "token": token.to_jwt().decode()},
+        {"classroom": classroom, "token": token},
     )
 
 
@@ -71,21 +61,6 @@ def token(request):
     response = {"identity": identity, "token": token.to_jwt().decode("utf-8")}
 
     return JsonResponse(response)
-
-
-@login_required
-def chat(request):
-    """"""
-    username = request.user.username
-    token = AccessToken(
-        settings.TWILIO_ACCOUNT_SID,
-        settings.TWILIO_API_KEY_SID,
-        settings.TWILIO_API_KEY_SECRET,
-        identity=username,
-    )
-    token.add_grant(VideoGrant(room="Chat Room"))
-
-    return render(request, "chat.html", {"token": token.to_jwt().decode()})
 
 
 @login_required
