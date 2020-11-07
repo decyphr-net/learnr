@@ -5,6 +5,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from twilio.jwt.access_token import AccessToken
+from twilio.jwt.access_token.grants import ChatGrant
+from twilio.jwt.access_token.grants import VideoGrant
 from .models import Classroom, Conversation
 from .helpers.twilio import get_twilio_token
 
