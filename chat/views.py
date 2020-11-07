@@ -72,4 +72,4 @@ def update_conversation(request):
         room=classroom, sender=request.user, message=data["message"]
     )
     conversation.save()
-    return JsonResponse({"hello": "hello"})
+    return JsonResponse({"message": "created"}, status=201)
