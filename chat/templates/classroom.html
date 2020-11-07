@@ -5,7 +5,7 @@
 {% block content %}
 <div class="columns">
   <div class="column is-offset-1 is-6">
-    <h2 class="title">Classroom</h2>
+    <h2 class="title">{{ classroom.name }}</h2>
     <section>
       <p class="is-hidden" id="token">{{ token }}</p>
       <p class="is-hidden" id="username">{{ user.username }}</p>
@@ -28,6 +28,7 @@
       
       <div id="messages"></div>
       <form id="message-form">
+        {% csrf_token %}
         <div class="field">
           <div class="control">
             <textarea class="textarea" id="message-input" placeholder="Sua mensagem aqui" rows="3" autofocus></textarea>

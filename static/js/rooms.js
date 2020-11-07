@@ -3,14 +3,44 @@ $(function() {
   let chatClient;
   let roomChannel;
   let username;
+  const roomName = $(".title").html();
+  const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
   let $form = $("#message-form");
   let $input = $("#message-input");
+
+  function submitChat(message) {
+    let data = {
+      room: roomName,
+      message: message,
+    };
+
+    const request = new Request(
+      "/chat/update-conversation/",
+      {
+        headers: {
+          "X-CSRFToken": csrf,
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    fetch(request, {
+      method: "POST",
+      body: JSON.stringify(data)
+    }, data).then(response => {
+      return response.json()
+    }).then(result => {
+      console.log(result)
+    })
+  }
   $form.on("submit", function(e) {
     e.preventDefault();
     if (roomChannel && $input.val().trim().length > 0) {
       roomChannel.sendMessage($input.val());
+      submitChat($input.val())
       $input.val("");
+      
     }
   });
 

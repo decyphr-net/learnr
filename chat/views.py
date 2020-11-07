@@ -1,3 +1,4 @@
+import json
 from datetime import date
 from django.conf import settings
 from django.shortcuts import render
@@ -7,7 +8,7 @@ from django.http import JsonResponse
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import ChatGrant
 from twilio.jwt.access_token.grants import VideoGrant
-from .models import Classroom
+from .models import Classroom, Conversation
 
 
 @login_required
@@ -29,7 +30,7 @@ def classroom(request, name):
 
     host = User.objects.get(username=name)
     student = request.user
-    classroom_name = f"{host} & {student} - {date.today()}"
+    classroom_name = f"{host} and {student} - {date.today()}"
     token.add_grant(VideoGrant(room=classroom_name))
 
     classroom = Classroom(
@@ -41,7 +42,11 @@ def classroom(request, name):
     )
 
     classroom.save()
-    return render(request, "classroom.html", {"token": token.to_jwt().decode()})
+    return render(
+        request,
+        "classroom.html",
+        {"classroom": classroom, "token": token.to_jwt().decode()},
+    )
 
 
 @login_required
@@ -81,3 +86,15 @@ def chat(request):
     token.add_grant(VideoGrant(room="Chat Room"))
 
     return render(request, "chat.html", {"token": token.to_jwt().decode()})
+
+
+@login_required
+def update_conversation(request):
+    data = json.loads(request.body)
+    classroom = Classroom.objects.get(name=data["room"])
+
+    conversation = Conversation(
+        room=classroom, sender=request.user, message=data["message"]
+    )
+    conversation.save()
+    return JsonResponse({"hello": "hello"})
